@@ -7,8 +7,17 @@ pipeline {
       }
     }
     stage('Test') {
-      steps {
-        echo 'Testing...'
+      parallel {
+        stage('Test on Linux') {
+          steps {
+            echo 'Testing...'
+          }
+        }
+        stage('Test on Windows') {
+          steps {
+            echo 'Test on Windows...'
+          }
+        }
       }
     }
     stage('Deploy') {
